@@ -1,0 +1,18 @@
+{
+	"ImportPath": "github.com/Pivotal-Japan/service-test",
+	"GoVersion": "go1.5.3",
+	"Deps": [
+		{
+			"ImportPath": "github.com/vulcand/oxy/forward",
+			"Rev": "5725fecc9a4f3aa6fdc3ffd29cef771241809add"
+		},
+		{
+			"ImportPath": "github.com/vulcand/oxy/testutils",
+			"Rev": "5725fecc9a4f3aa6fdc3ffd29cef771241809add"
+		},
+		{
+			"ImportPath": "github.com/vulcand/oxy/utils",
+			"Rev": "5725fecc9a4f3aa6fdc3ffd29cef771241809add"
+		}
+	]
+}
