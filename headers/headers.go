@@ -27,13 +27,14 @@ func NewRouteServiceHeaders() *RouteServiceHeaders {
 	}
 }
 
-func (r *RouteServiceHeaders) ParseHeaders(headers *http.Header) error {
+func (r *RouteServiceHeaders) ParseHeadersAndClean(headers *http.Header) error {
 	var err error
 	r.Signature = headers.Get(RouteServiceSignature)
 	r.UrlString = headers.Get(RouteServiceForwardedUrl)
 	r.Metadata = headers.Get(RouteServiceMetadata)
 
 	r.ParsedUrl, err = url.Parse(r.UrlString)
+	headers.Del(RouteServiceForwardedUrl)
 	return err
 
 }
@@ -43,7 +44,6 @@ func (r *RouteServiceHeaders) IsValidRequest() bool {
 		return false
 
 	}
-
 	return true
 
 }
