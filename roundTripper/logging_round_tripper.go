@@ -2,7 +2,9 @@ package roundTripper
 
 import (
 	"errors"
+	"log"
 	"net/http"
+	"time"
 )
 
 type LoggingRoundTripper struct {
@@ -21,6 +23,7 @@ func NewLoggingRoundTripper() *LoggingRoundTripper {
 func (lrt *LoggingRoundTripper) RoundTrip(request *http.Request) (*http.Response, error) {
 	var err error
 	var res *http.Response
+	start := time.Now()
 	if request.Host == "No Host" {
 		return nil, errors.New("Incoming Request Invalid")
 	}
@@ -28,7 +31,7 @@ func (lrt *LoggingRoundTripper) RoundTrip(request *http.Request) (*http.Response
 	if err != nil {
 		return nil, err
 	}
-	res.Header.Add("X-Reponse-Forwarding", res.Status)
-
+	res.Header.Add("X-Response-Forwarding", res.Status)
+	log.Printf("Time Elapsed RoundTrip %v", time.Since(start))
 	return res, err
 }

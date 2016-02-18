@@ -1,6 +1,7 @@
 package headers
 
 import (
+	"fmt"
 	"net/http"
 	"net/url"
 )
@@ -45,5 +46,10 @@ func (r *RouteServiceHeaders) IsValidRequest() bool {
 
 	}
 	return true
+
+}
+
+func (r *RouteServiceHeaders) String() string {
+	return fmt.Sprintf("\n X-CF-Proxy-Signature: %v \n X-CF-Forwarded-Url: %v \n X-CF-Proxy-Metadata: %v", r.Signature, r.UrlString, r.Metadata)
 
 }

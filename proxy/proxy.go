@@ -7,12 +7,14 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
+	"time"
 )
 
 func NewReverseProxy(transport http.RoundTripper) *httputil.ReverseProxy {
 
 	reverseProxy := &httputil.ReverseProxy{
 		Director: func(req *http.Request) {
+			start := time.Now()
 			RouterServiceheader := headers.NewRouteServiceHeaders()
 
 			err := RouterServiceheader.ParseHeadersAndClean(&req.Header)
@@ -28,7 +30,10 @@ func NewReverseProxy(transport http.RoundTripper) *httputil.ReverseProxy {
 			} else {
 				req.Body = ioutil.NopCloser(bytes.NewBuffer([]byte{}))
 				req.Host = "No Host"
+				log.Print(RouterServiceheader.String())
 			}
+
+			log.Printf("Time Elapsed header %v ", time.Since(start))
 
 		},
 		Transport: transport,
