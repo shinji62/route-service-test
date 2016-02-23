@@ -9,8 +9,7 @@ Features:
 ##Creating Route-Service
 ### Using User provided cf >= 229 and use edge cf cli (unrelease build)
 
-[![asciicast](https://asciinema.org/a/14.png)](https://asciinema.org/a/14)
-
+[![asciicast](https://asciinema.org/a/c1vxs1d3g76hmvdtumiyo51cr.png)](https://asciinema.org/a/c1vxs1d3g76hmvdtumiyo51cr)
 
 ##Usage
 
